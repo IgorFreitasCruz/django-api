@@ -1,0 +1,38 @@
+version: '3.8'
+
+networks:
+  api-network:
+    driver: bridge
+
+volumes:
+  mongodb-vol:
+
+
+services:
+  web:
+    build: .
+    networks:
+      - api-network
+    # command: python /code/manage.py runserver 0.0.0.0:8000
+    command: >
+      bash -c "python manage.py makemigrations && 
+               python manage.py migrate &&    
+               python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+
+  mongodb:
+    image: mongo:5.0.3
+    networks:
+      - api-network
+    volumes:
+      - mongodb-vol:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - "27017:27017"

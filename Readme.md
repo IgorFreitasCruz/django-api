@@ -64,7 +64,7 @@ $ cd django-api
 $ docker-compose up -d
 
 # create a superuser to access the admin panel
-$ docker-compose run web python manage.py create superuser
+$ docker-compose run web python manage.py createsuperuser
 ```
 
 ---

@@ -19,7 +19,6 @@ Table of contents
 - [About the project](#about-the-project)
 - [Functionalities](#️functionalities)
 - [Running the project](#running-the-project)
-   - [Python](#python)
    - [Docker](#docker)
 - [Admin](#admin-panel)
 - [API example](#api-example)
@@ -56,26 +55,6 @@ $ git clone https://github.com/IgorFreitasCruz/django-api.git
 $ cd django-api
 ```
 
-### Python
-```bash
-# create a virtual environment
-$ python3 -m venv djangox
-$ source djangoapi/bin/activate
-
-# install all the dependencies
-$ pip install -r requirements.txt
-
-# run the migrations
-$ python manage.py makemigrations
-$ python manage.py migrate
-
-# create a superuser to access the admin panel
-$ python manage.py createsuperuser
-
-# start the server
-$ python manage.py run server 8000
-```
-
 ---
 
 ### Docker
@@ -87,11 +66,12 @@ $ docker-compose up -d
 # create a superuser to access the admin panel
 $ docker-compose run web python manage.py create superuser
 ```
+
 ---
 
 ## Admin panel
 
-To access the Django Admin panel go to ```http://localhost:8000/admin```
+To access the Django Admin panel go to ```http://localhost:8000/admin``` or click the **Admin** button in the home page.
 
 <p align="center">
    <img alt="admin" width="800" src="static/images/admin.png">

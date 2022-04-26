@@ -8,5 +8,5 @@ router.register(r"employee", EmployeeViewSet, basename="employees")
 
 urlpatterns = [
     path("", include(router.urls), name="index"),
-    
+
 ]

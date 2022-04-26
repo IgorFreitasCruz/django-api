@@ -47,7 +47,10 @@ class EmployeeViewSet(viewsets.ViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop("partial", False)
         obj = self.get_object()
-        serializer = self.get_serializer(obj, data=request.data, partial=partial)
+        serializer = self.get_serializer(
+            obj,
+            data=request.data,
+            partial=partial)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
@@ -60,3 +63,39 @@ class EmployeeViewSet(viewsets.ViewSet):
         obj = self.get_object()
         obj.delete()
         return Response(status=204)
+
+
+emp1 = {
+    "name": "Felipe Morais",
+    "email": "felipe.morais@igs-software.com.br",
+    "department": "Tester",
+}
+emp2 = {
+    "name": "Tatiane Laura",
+    "email": "tatiane.laura@igs-software.com.br",
+    "department": "Developer",
+}
+emp3 = {
+    "name": "Mauricio Alegretti",
+    "email": "mauricio.alegretti@igs-software.com.br",
+    "department": "RH",
+}
+
+# Checking the database before creating new employees
+get_list = EmployeeViewSet().list(None)
+if not len(get_list.data):
+
+    # Intantiate the serializer
+    emp1_serializer = EmployeeSerializer(data=emp1)
+    emp2_serializer = EmployeeSerializer(data=emp2)
+    emp3_serializer = EmployeeSerializer(data=emp3)
+
+    # Check if the serializer is valid
+    emp1_serializer.is_valid()
+    emp2_serializer.is_valid()
+    emp3_serializer.is_valid()
+
+    # Save the serializer
+    emp1_serializer.save()
+    emp2_serializer.save()
+    emp3_serializer.save()

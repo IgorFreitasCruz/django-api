@@ -98,6 +98,9 @@ DATABASES = {
     }
 }
 
+FIXTURE_DIRS = [
+    str(BASE_DIR.joinpath('fixtures'))
+]
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
